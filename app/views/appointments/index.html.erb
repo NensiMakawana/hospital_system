@@ -1,0 +1,31 @@
+<%= link_to 'List of available time slots', availibility_time_slots_path %>
+<%= link_to 'Book Appoinment', new_appointment_path if current_patient %>
+<p id="notice"><%= notice %></p>
+
+<h1>Appointments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th>Appoinment Date</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.doctor.name %></td>
+        <td><%= appointment.patient.name %></td>
+        <td><%= appointment.appointment_date %></td>
+        <td><%= appointment.start_time.strftime("%H:%M") if appointment.start_time %></td>
+        <td><%= appointment.appointment_end_time.strftime("%H:%M") if appointment.appointment_end_time %></td>
+        <td><%= appointment.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

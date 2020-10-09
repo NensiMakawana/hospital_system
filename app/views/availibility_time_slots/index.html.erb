@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Availibility Time Slots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Doctor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @availibility_time_slots.each do |availibility_time_slot| %>
+      <tr>
+        <td><%= availibility_time_slot.start_date %></td>
+        <td><%= availibility_time_slot.end_date %></td>
+        <td><%= availibility_time_slot.start_time.strftime("%H:%M") %></td>
+        <td><%= availibility_time_slot.end_time.strftime("%H:%M") %></td>
+        <td><%= availibility_time_slot.doctor.name %></td>
+        <td><%= link_to 'Show', availibility_time_slot %></td>
+        <% if current_doctor.present? %>
+          <td><%= link_to 'Edit', edit_availibility_time_slot_path(availibility_time_slot) %></td>
+          <td><%= link_to 'Destroy', availibility_time_slot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Availibility Time Slot', new_availibility_time_slot_path if current_doctor.present? %>

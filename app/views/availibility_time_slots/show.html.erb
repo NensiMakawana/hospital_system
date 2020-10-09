@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @availibility_time_slot.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @availibility_time_slot.start_date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @availibility_time_slot.start_time.strftime("%H:%M") %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @availibility_time_slot.end_time.strftime("%H:%M") %>
+</p>
+
+<p>
+  <strong>Doctor:</strong>
+  <%= @availibility_time_slot.doctor.name %>
+</p>
+
+<%= link_to 'Edit', edit_availibility_time_slot_path(@availibility_time_slot) %> |
+<%= link_to 'Back', availibility_time_slots_path %>

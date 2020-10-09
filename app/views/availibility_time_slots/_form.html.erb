@@ -1,0 +1,43 @@
+<%= form_with(model: availibility_time_slot, local: true) do |form| %>
+  <% if availibility_time_slot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(availibility_time_slot.errors.count, "error") %> prohibited this availibility_time_slot from being saved:</h2>
+
+      <ul>
+        <% availibility_time_slot.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.time_field :start_time, format: "%H:%M" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.time_field :end_time, format: "%H:%M" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doctor_id %>
+    <%= text_field_tag 'doctor_name', (current_doctor.name if current_doctor.present?), readonly: true %>
+    <%= form.hidden_field :doctor_id, value: (current_doctor.id if current_doctor.present?) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

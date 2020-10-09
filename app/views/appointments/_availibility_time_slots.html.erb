@@ -1,0 +1,1 @@
+<%= select_tag 'appointment[availibility_time_slot_id]', options_for_select(availibility_time_slots.map { |a| ["#{a.start_date} - #{a.end_date} #{a.start_time.strftime("%H:%M")} - #{a.end_time.strftime("%H:%M")}", a.id] }) %>

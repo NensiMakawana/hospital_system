@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  patient: one
+  doctor: one
+  description: MyString
+  availibility_time_slot: one
+
+two:
+  patient: two
+  doctor: two
+  description: MyString
+  availibility_time_slot: two

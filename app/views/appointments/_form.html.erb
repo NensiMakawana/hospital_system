@@ -1,0 +1,66 @@
+<%= form_with(model: appointment, local: true) do |form| %>
+  <% if appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+        <% appointment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :doctor_id %>
+    <%= form.select :doctor_id, options_for_select(@doctors.map { |d| [d.name, d.id] }), {include_blank: true } %>
+  </div>
+
+  <div class="field">
+    <%= form.label :patient_id %>
+    <%= form.select :patient_id, options_for_select(@patients.map { |p| [p.name, p.id] }, current_patient.id), {}, { disabled: true } %>
+    <%= form.hidden_field :patient_id, value: current_patient.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :availibility_time_slot_id %>
+    <div class="availibility_time_slots">
+      <%= render partial: 'availibility_time_slots', locals: { availibility_time_slots: @availibility_time_slots} %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :appointment_date %>
+    <%= form.date_select :appointment_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.time_field :start_time, format: "%H:%M" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :appointment_end_time %>
+    <%= form.time_field :appointment_end_time, format: "%H:%M" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :appointment_end_time, format: "%H:%M" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<script type="text/javascript">
+  $('#appointment_doctor_id').on('change', function(){
+    $.ajax({
+      url: "<%= doctor_wise_time_slots_appointments_path %>",
+      type: "get",
+      data: { doctor_id: $('#appointment_doctor_id').val()},
+      success: function(data) {},
+      error: function(data) {}
+    });
+  });
+</script>

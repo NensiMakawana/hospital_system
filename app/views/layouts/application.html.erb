@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HospitalSystem</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_doctor %>
+      <%= link_to 'Logout Doctor', destroy_doctor_session_path %>
+    <% elsif current_patient %>
+      <%= link_to 'Logout Patient', destroy_patient_session_path %>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
